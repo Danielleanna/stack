@@ -3,9 +3,21 @@ class LinksController < ApplicationController
 	#Before EVERYTHING in here, find the category
 	before_action :get_category
 
+  #Before EDIT, UPDTAE and DESTROY, find the link
+  before_action :get_link, only: [:edit, :update, :destroy]
 
   def new
- 	@link = @category.links.new
+
+    if params[:duplicate_id].present?
+      #do a duplicate of this
+      @duplicate_link = @category.links.find(params[:duplicate_id])
+      @link = @category.links.new(@duplicate_link.attributes)
+    else
+      #do a brand new one
+      @link = @category.links.new
+    end
+ 	  
+
   end
  
 
@@ -24,14 +36,12 @@ class LinksController < ApplicationController
 
 
   def edit
-    #I want to find the linnk within the category
-    @link = @category.links.find(params [:id])
+    
   end
 
 
 
   def update
-    @link =@category.links.find(params [:id])
 
     if @link.update(link_params)
       flash[:success] = "Link as updated"
@@ -39,7 +49,14 @@ class LinksController < ApplicationController
     else
       render :edit
     end
+
+  end
+
+  def destroy
     
+    @link.destroy
+    flash[flash:success] = "Link was deleted"
+    redirect_to category_path(@category)
   end
 
 
@@ -56,4 +73,8 @@ class LinksController < ApplicationController
  	@category = Category.find(params[:category_id])
 end
 
+
+def get_link
+  @link = @category.links.find(params [:id])
+end
 end
