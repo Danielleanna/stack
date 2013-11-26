@@ -1,0 +1,28 @@
+
+<ul class="category-list">
+<!-- in here, loop over the @categories -->
+<!-- I haven't got a = int the ERB tag because I dont want it to print it on the list -->
+
+<% @categories.each do |category| %>
+
+<!-- for each thing in @categories, called it "category" and print it out in a list item -->
+
+<li> 
+	<div class="details">
+	<%= link_to category.name, category_path(category) %>
+	</div>	
+
+	<div class="actions">
+		<%= link_to "Edit", edit_category_path(category), class: "edit" %>
+
+		<%= link_to "Delete", category_path(category), method: :delete, class: "delete", confirm: "Are you sure you want to delete this category?" %>
+	</div>
+</li>
+<% end %>
+
+</ul>
+
+<!-- link_to is more flexible for changing URLs later on-->
+
+<%= link_to "New Catgory", new_category_path, class: "button"%>
+
