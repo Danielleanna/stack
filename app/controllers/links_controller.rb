@@ -75,6 +75,6 @@ end
 
 
 def get_link
-  @link = @category.links.find(params [:id])
+  @link = @category.links.find(params[:id])
 end
 end
