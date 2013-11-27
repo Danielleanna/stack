@@ -7,7 +7,12 @@
 				<div class="details">
 						<h3><%= link_to l.name %></h3>
 						<p><%= l.description %></p>
-						<p><%= link_to l.url, l.url %></p>
+						<p><%= link_to l.nice_url, l.url %>
+
+							<%if l.is_recommended? %>
+								<span> - Highly recommended </span>
+							<% end %>
+						</p>
 				</div>
 
 				<div class="actions">
