@@ -12,6 +12,10 @@
 
 				<div class="actions">
 					<%= link_to "Edit", edit_category_link_path (@category, l), class: "edit" %>
+
+					<%= link_to "Duplicate", new_category_link_path(@category, duplicate_id: l.id), class: "edit" %>
+
+					<%= link_to "Delete",  category_link_path(category_link_path(@category, 1), method: :delete, class: "delete", confirm: 
 				</div>
 
 		</div>

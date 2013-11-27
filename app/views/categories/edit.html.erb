@@ -1,11 +1,3 @@
 <h2> Edit <%= @link.name%> </h2>
 
-<%= simple_form_for [@category, @link] do |f| %>
-	<%= f.input :name %>
-	<%= f.input :description %>
-	<%= f.input :url %>
-
-	<%= f.button :submit %>
-
-<% end %>
-
+<%= render "form"%>

@@ -53,3 +53,9 @@ gem "steer"
 
 # add in Active Admin CMS, it's pretty new so we have to specific
 gem "activeadmin", github: "gregbell/active_admin"
+
+
+
+#because Heroku asks for this gem
+gem "rails_12factor", group: :production
+
